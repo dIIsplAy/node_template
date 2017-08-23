@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Node-Template</title>
+</head>
+
+<body>
+    <h1> Add Evenements</h1>
+    <form method="POST" action="/event/add">
+        <label for="name" value="name">Name</label>
+        <input id="name" type="text" placeholder="name">
+        <label for="place" value="place">Place</label>
+        <input id="place" type="text" placeholder="place">
+        <input id="send" type="submit" placeholder="SEND">
+    </form>
+
+    <h2>Listes des Evenements disponibles</h2>
+
+
+    <script>
+        let button = document.querySelector('#send');
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', '/event/add', true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        // eval(xhr.responseText);
+                    } else {
+                        console.error('unexpected status code:', this.status);
+                    }
+                }
+            };
+            xhr.send(null);
+        });
+    </script>
+
+</body>
+
+</html>
